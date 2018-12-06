@@ -7,11 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel.Models
 {
-    public class DCConfirmationDetailModel
+    public class DCConfirmationDetailModel : Base
     {
-        [Key]
-        public int Id { get; set; }
-
         public int DCConfirmationId { get; set; }
 
         [StringLength(30)]

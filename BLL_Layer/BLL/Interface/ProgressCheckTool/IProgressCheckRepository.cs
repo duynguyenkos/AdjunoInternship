@@ -1,11 +1,5 @@
-﻿using DomainModel.Models;
-using DTOs;
-using System;
+﻿using DTOs;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace BLL_Layer.BLL.Interface
 {
     public interface IProgressCheckRepository

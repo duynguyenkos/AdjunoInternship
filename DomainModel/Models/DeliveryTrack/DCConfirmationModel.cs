@@ -7,11 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel.Models
 {
-    public class DCConfirmationModel
+    public class DCConfirmationModel : Base
     {
-        [Key]
-        public int Id { get; set; }
-
         //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime DeliveryDate { get; set; }
 

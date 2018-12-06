@@ -7,11 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel.Models
 {
-    public class ArriveOfDespacthModel
+    public class ArriveOfDespacthModel : Base
     {
-        [Key]
-        public int Id { get; set; }
-
         //[ForeignKey("BookingModel")]
         public int BookingId { get; set; }
         public string Carrier { get; set; }

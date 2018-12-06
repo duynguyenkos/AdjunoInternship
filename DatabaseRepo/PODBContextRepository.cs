@@ -5,9 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAL_Layer.DAL.DBContext;
-using BLL_Layer.BLL.Interface;
 
-namespace BLL_Layer.BLL.Implements
+namespace DatabaseRepo
 {
     public class PODBContextRepository : IPODBContext
     {

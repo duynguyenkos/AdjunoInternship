@@ -6,10 +6,8 @@ using System.Web;
 
 namespace DomainModel.Models
 {
-    public class BookingModel
-    {
-        [Key]
-        public int Id { get; set; }      
+    public class BookingModel : Base
+    {  
         public string Order { get; set; }
         public int OrderId { get; set; }    
         public string Line { get; set; }   

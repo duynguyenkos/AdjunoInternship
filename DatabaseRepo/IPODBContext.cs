@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using DAL_Layer.DAL.DBContext;
 
-namespace BLL_Layer.BLL.Interface
+namespace DatabaseRepo
 {
     public interface IPODBContext
     {

@@ -1,4 +1,4 @@
-namespace InternProject.Migrations
+namespace DAL_Layer.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

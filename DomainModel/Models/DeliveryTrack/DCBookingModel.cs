@@ -7,11 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel.Models
 {
-    public class DCBookingModel
+    public class DCBookingModel : Base
     {
-        [Key]
-        public int Id { get; set; }
-
         [StringLength(20)]
         public string DeliveryMethod { get; set; }
 

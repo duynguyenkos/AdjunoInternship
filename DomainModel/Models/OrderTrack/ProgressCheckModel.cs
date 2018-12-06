@@ -7,12 +7,8 @@ using System.Web;
 
 namespace DomainModel.Models
 {
-    public class ProgressCheckModel
+    public class ProgressCheckModel : Base
     {
-        [Key]
-        [Required]
-        public int Id { get; set; }
-
         //yes/no
         public bool Complete { get; set; }
 

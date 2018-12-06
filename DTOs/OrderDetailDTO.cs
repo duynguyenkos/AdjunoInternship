@@ -5,10 +5,16 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DomainModel.Models
+namespace DTOs
 {
-    public class OrderDetailModel : Base
+    public class OrderDetailDTO
     {
+        [Key]
+        [Required]
+        [Display(Name = "Item Number")]
+        [Range(0, 9999999999)] //up to 10 digits
+        public int Id { get; set; }
+
         //unknown
         public string Line { get; set; }
 
@@ -28,7 +34,7 @@ namespace DomainModel.Models
         public string Item { get; set; }
 
         [Required]
-        //[Display(Name = "Item Quantity")]
+        [Display(Name = "Item Quantity")]
         public float Quantity { get; set; }
 
         [Required]
@@ -41,7 +47,7 @@ namespace DomainModel.Models
         public float KGS { get; set; }
 
         [Required]
-        //[Display(Name = "Unit Price")]
+        [Display(Name = "Unit Price")]
         public float UnitPrice { get; set; }
 
         //Item Quantity*Unit Price = Total Price
@@ -54,7 +60,7 @@ namespace DomainModel.Models
         }
 
         [Required]
-        //[Display(Name = "Retail Price")]
+        [Display(Name = "Retail Price")]
         public float RetailPrice { get; set; }
 
         //Item Quantity*Retail Price = Total Retail Price
@@ -65,13 +71,14 @@ namespace DomainModel.Models
             }
         }
 
-        //[RegularExpression("[^0-9]", ErrorMessage = "Tariff must be numeric")]
+        [RegularExpression("[^0-9]", ErrorMessage = "Tariff must be numeric")]
+        [Display(Name = "Tariff Code")]
         public string Tariff { get; set; }
 
         [Required]
         //[ForeignKey("OrderModel")]
         public int OrderId { get; set; }
 
-        public virtual OrderModel OrderModel { get; set; }
+        public virtual OrderDTO OrderModel { get; set; }
     }
 }

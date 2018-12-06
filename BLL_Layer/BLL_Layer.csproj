@@ -85,16 +85,21 @@
     <Compile Include="BLL\Implements\ProgressCheckTool\ProgressCheckRepository.cs" />
     <Compile Include="BLL\Implements\PurchaseOrderTool\PurchaseOrderRepository.cs" />
     <Compile Include="BLL\Interface\ProgressCheckTool\IProgressCheckRepository.cs" />
-    <Compile Include="BLL\Implements\PODBContextRepository.cs" />
-    <Compile Include="BLL\Interface\IPODBContext.cs" />
     <Compile Include="BLL\Interface\PurchaseOrderTool\IPurchaseOrderRepository.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL_Layer\DAL_Layer.csproj">
       <Project>{83a951f3-c694-472a-aac7-98a119b98e6e}</Project>
       <Name>DAL_Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DatabaseRepo\DatabaseRepo.csproj">
+      <Project>{c2c3b1d4-6ee3-4a5c-9ca5-781a347ec067}</Project>
+      <Name>DatabaseRepo</Name>
     </ProjectReference>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{dfc0f2ad-1e18-4484-bebd-c926cdf6009c}</Project>
@@ -104,10 +109,6 @@
       <Project>{98c5bc74-accd-4058-b4a6-06e1fa606608}</Project>
       <Name>DTOs</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

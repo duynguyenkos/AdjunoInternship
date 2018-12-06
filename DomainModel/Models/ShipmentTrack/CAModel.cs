@@ -7,10 +7,8 @@ using System.Web;
 
 namespace DomainModel.Models
 {
-    public class CAModel
+    public class CAModel : Base
     {
-        [Key]
-        public int Id { get; set; }
         //[ForeignKey("BookingModel")]
         public int BookingId { get; set; }
         public DateTime ArrivalDate { get; set; }

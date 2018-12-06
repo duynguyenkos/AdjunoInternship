@@ -4,14 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel.Models
 {
-    public class OrderModel
+    public class OrderModel : Base
     {
-        [Key]
-        [Required]
-        //[Display(Name = "PO Number")]
-        //[Range(0, 10 ^ 11 - 1)] //up to 10 digits
-        public int Id { get; set; }
-
         //DropList from 2010 to 2020
         //Default value is Current Date
         //[DataType(DataType.DateTime)]

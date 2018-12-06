@@ -12,7 +12,7 @@ namespace DTOs
     public class OrderDTO
     {
         [Display(Name = "PO Number")]
-        [Range(0, 10 ^ 11 - 1)] //up to 10 digits
+        [Range(0, 9999999999)] //up to 10 digits
         public int Id { get; set; }
 
         //DropList from 2010 to 2020
@@ -48,10 +48,12 @@ namespace DTOs
         //Droplist of Ports
         [Required]
         [Display(Name = "Port of Loading")]
+        [PortIsDifferent("PortOfDelivery")]
         public string PortOfLoading { get; set; }
 
         [Required]
         [Display(Name = "Port of Delivery")]
+        [PortIsDifferent("PortOfLoading")]
         public string PortOfDelivery { get; set; }
         public IEnumerable<SelectListItem> Ports { get; set; }
 
@@ -71,11 +73,11 @@ namespace DTOs
         public DateTime ShipDate { get; set; }
 
         [Display(Name = "Latest Ship Date")]
-        //[SimilarOrLaterThanShipDate("ShipDate")]
+        [SimilarOrLaterThanShipDate("ShipDate")]
         public DateTime LatestShipDate { get; set; }
 
         [Display(Name = "Delivery Date")]
-        //[SimilarOrLaterThanShipDate("ShipDate")]
+        [SimilarOrLaterThanShipDate("ShipDate")]
         public DateTime DeliveryDate { get; set; }
 
         //sum of all PODetails Quantity 
@@ -84,6 +86,6 @@ namespace DTOs
         //Default value = "New"
         public string Status { get; set; } = "New";
 
-        public virtual List<OrderDetailModel> PODetails { get; set; }
+        public virtual List<OrderDetailDTO> PODetails { get; set; }
     }
 }

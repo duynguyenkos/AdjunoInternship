@@ -83,6 +83,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\DBContext\PODBContext.cs" />
+    <Compile Include="Migrations\201812040454014_Initial.cs" />
+    <Compile Include="Migrations\201812040454014_Initial.Designer.cs">
+      <DependentUpon>201812040454014_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812040750012_ReviseModel1.cs" />
+    <Compile Include="Migrations\201812040750012_ReviseModel1.Designer.cs">
+      <DependentUpon>201812040750012_ReviseModel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +103,14 @@
       <Project>{dfc0f2ad-1e18-4484-bebd-c926cdf6009c}</Project>
       <Name>DomainModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812040454014_Initial.resx">
+      <DependentUpon>201812040454014_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812040750012_ReviseModel1.resx">
+      <DependentUpon>201812040750012_ReviseModel1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

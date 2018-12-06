@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace InternProject.ViewModels.PurchaseOrderManager
+namespace DTOs
 {
     public class SimilarOrLaterThanShipDateAttribute : ValidationAttribute
     {

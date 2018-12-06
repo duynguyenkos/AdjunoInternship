@@ -7,11 +7,8 @@ using System.Web;
 
 namespace DomainModel.Models
 {
-    public class ManifestModel
+    public class ManifestModel : Base
     {
-        [Key]
-        //[Column(Order = 1)]
-        public int Id { get; set; }
         //[ForeignKey("BookingModel")]
         public int BookingId { get; set; }
 

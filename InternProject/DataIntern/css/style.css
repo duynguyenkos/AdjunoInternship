@@ -93,7 +93,7 @@ span.fa.fa-plus {
     border: none;
 }
 
-input[type="text"] {
+.filter-createnew input[type="text"] {
     border-radius: 10px 10px;
     border: 1px solid gray;
     width: 40%;

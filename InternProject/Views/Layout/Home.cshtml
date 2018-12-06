@@ -115,11 +115,12 @@
 
                 <!-- start table -->
                 @RenderBody()
-                 <!-- end content-table -->
+                <!-- end content-table -->
             </div>
         </div>
 
     </div><!-- /uk-grid -->
-
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
