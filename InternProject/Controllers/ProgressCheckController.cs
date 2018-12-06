@@ -1,89 +1,40 @@
-﻿using System;
+﻿using BLL_Layer.BLL.Interface;
+using DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace InternProject.Controllers
 {
     public class ProgressCheckController : Controller
     {
+        private IProgressCheckRepository ProcheckRepository;
+
+        public ProgressCheckController() { }
+
+        public ProgressCheckController(IProgressCheckRepository progressCheckRepository)
+        {
+            this.ProcheckRepository = progressCheckRepository;
+        }
         // GET: ProgressCheck
         public ActionResult Index()
         {
             return View();
         }
-
-        // GET: ProgressCheck/Details/5
-        public ActionResult Details(int id)
+        public ActionResult IndexTest()
         {
-            return View();
+            List<ProgressCheckDTO> progressCheckDTOs = ProcheckRepository.GetAll();
+            return View(progressCheckDTOs);
         }
-
-        // GET: ProgressCheck/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ProgressCheck/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult IndexTest([Bind(Include = "InspectionDate,IntendedShipDate,Complete")]ProgressCheckDTO progressCheckDTO)
         {
-            try
-            {
-                // TODO: Add insert logic here
+            ProcheckRepository.Add(progressCheckDTO);
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View(progressCheckDTO);
         }
-
-        // GET: ProgressCheck/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ProgressCheck/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ProgressCheck/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ProgressCheck/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

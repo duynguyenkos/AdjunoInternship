@@ -1,18 +1,19 @@
 ﻿using DomainModel.Models;
+using DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL_Layer.BLL.Interface.ProgressCheckTool
+namespace BLL_Layer.BLL.Interface
 {
-    interface IProgressCheckRepository
+    public interface IProgressCheckRepository
     {
-        List<ProgressCheckModel> GetAll();
-        void Add(ProgressCheckModel progressCheckModel);
-        ProgressCheckModel Find(int id);
-        void Delete(ProgressCheckModel progressCheckModel);
-        ProgressCheckModel Edit(ProgressCheckModel progressCheckModel);
+        List<ProgressCheckDTO> GetAll();
+        void Add(ProgressCheckDTO progressCheckDTO);
+        ProgressCheckDTO Find(int id);
+        void Delete(ProgressCheckDTO progressCheckDTO);
+        void Edit(ProgressCheckDTO progressCheckDTO);
     }
 }
