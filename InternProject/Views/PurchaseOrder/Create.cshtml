@@ -1,7 +1,5 @@
 ﻿@model DTOs.OrderDTO
 
-
-
 <h3>PO Manager</h3>
 
 @using (Html.BeginForm())
@@ -12,17 +10,15 @@
     <h4>Add Order</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    <table class="uk-table">
+    <table class="uk-table PO">
         <tr>
             <td>
-                @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.PONumber, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "uk-input" } })
-                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
-                </div>
+                @Html.EditorFor(model => model.PONumber, new { htmlAttributes = new { @class = "uk-input", @id = "from", @onkeyup = "copy()" } })
+                @Html.ValidationMessageFor(model => model.PONumber, "", new { @class = "text-danger" })
+                @ViewBag.ErrorMessage
             </td>
             <td colspan="3"></td>
             <td>
@@ -33,16 +29,18 @@
                 </div>
             </td>
         </tr>
+
         <tr>
 
 
             <td>
-                @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.PONumber, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "uk-input" } })
-                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.PONumber, new { htmlAttributes = new { @class = "uk-input", @id = "to", @onkeyup = "copy2()" } })
+                    @Html.ValidationMessageFor(model => model.PONumber, "", new { @class = "text-danger" })
+                    @ViewBag.ErrorMessage
                 </div>
             </td>
 
@@ -254,107 +252,111 @@
         </tr>
 
     </table>
-
-    <table class="uk-table">
-        <tr>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Id, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Tariff, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Cartons, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Cube, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().KGS, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().RetailPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().TotalRetailPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Warehouse, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Size, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.PODetails.First().Colour, htmlAttributes: new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                Add New
-            </th>
-        </tr>
-        @if (Model.PODetails != null)
-        {
-            foreach (var item in Model.PODetails)
+    if (Model.Id != 0)
+    {
+        <table class="uk-table PODetail">
+            <tr>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().ItemNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Tariff, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Cartons, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Cube, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().KGS, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().TotalPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().RetailPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().TotalRetailPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Warehouse, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Size, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.LabelFor(model => model.PODetails.First().Colour, htmlAttributes: new { @class = "control-label col-md-2" })
+                </th>
+                <th>
+                    @Html.ActionLink("Add Item", "CreateItem", new { id = Model.Id })
+                </th>
+            </tr>
+            @if (Model.PODetails != null)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tariff)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cartons)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cube)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.KGS)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UnitPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TotalPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RetailPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TotalRetailPrice)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Warehouse)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Size)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Colour)
-                    </td>
-                </tr>
+                foreach (var item in Model.PODetails)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ItemNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tariff)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cartons)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cube)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.KGS)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UnitPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RetailPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalRetailPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Warehouse)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Size)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Colour)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit Item", "EditItem", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </table>
-
+        </table>
+    }
 }
 
 <div>
@@ -365,4 +367,14 @@
 {
     <script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")"></script>
+    <script type="text/javascript">
+
+        function copy() {
+            document.getElementById("to").value = document.getElementById("from").value;
+        };
+        function copy2() {
+            document.getElementById("from").value = document.getElementById("to").value;
+        };
+
+    </script>
 }

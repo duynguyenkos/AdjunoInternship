@@ -91,6 +91,14 @@
     <Compile Include="Migrations\201812040750012_ReviseModel1.Designer.cs">
       <DependentUpon>201812040750012_ReviseModel1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812060846292_AddBaseModel.cs" />
+    <Compile Include="Migrations\201812060846292_AddBaseModel.Designer.cs">
+      <DependentUpon>201812060846292_AddBaseModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812070331217_AddPONumber.cs" />
+    <Compile Include="Migrations\201812070331217_AddPONumber.Designer.cs">
+      <DependentUpon>201812070331217_AddPONumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201812070150433_UpdateDatabase.cs" />
     <Compile Include="Migrations\201812070150433_UpdateDatabase.Designer.cs">
       <DependentUpon>201812070150433_UpdateDatabase.cs</DependentUpon>
@@ -114,9 +122,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812040750012_ReviseModel1.resx">
       <DependentUpon>201812040750012_ReviseModel1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812070150433_UpdateDatabase.resx">
-      <DependentUpon>201812070150433_UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

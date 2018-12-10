@@ -202,13 +202,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\ProgessCheck\ProgressCheckViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PO.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="DataIntern\css\font-awesome.css" />
     <Content Include="DataIntern\css\style.css" />
@@ -274,10 +274,13 @@
     <Content Include="Views\Layout\Home.cshtml" />
     <Content Include="Views\DisplayAndFilter\DisplayAndFilter.cshtml" />
     <Content Include="Views\ProgressCheck\Index.cshtml" />
+    <Content Include="Views\PurchaseOrder\CreateItem.cshtml" />
+    <Content Include="Views\PurchaseOrder\EditItem.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DataIntern\Images\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -300,10 +303,6 @@
     <ProjectReference Include="..\DatabaseRepo\DatabaseRepo.csproj">
       <Project>{c2c3b1d4-6ee3-4a5c-9ca5-781a347ec067}</Project>
       <Name>DatabaseRepo</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
-      <Project>{dfc0f2ad-1e18-4484-bebd-c926cdf6009c}</Project>
-      <Name>DomainModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTOs\DTOs.csproj">
       <Project>{98c5bc74-accd-4058-b4a6-06e1fa606608}</Project>

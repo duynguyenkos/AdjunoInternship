@@ -1,0 +1,125 @@
+﻿@model DTOs.OrderDetailDTO
+
+<h3>PODetail Manager</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h4>Add Item Details</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(model => model.OrderId, new { Value = Model.OrderId })
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Apply" class="uk-button uk-button-default" />
+        </div>
+    </div>
+    <br />
+
+    <table class="uk-table PO">
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.ItemNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.ItemNumber, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.ItemNumber, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Tariff, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Tariff, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Tariff, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Cartons, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Cartons, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Cartons, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Cube, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Cube, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Cube, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.KGS, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.KGS, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.KGS, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.RetailPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.RetailPrice, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.RetailPrice, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.Warehouse, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Warehouse, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Warehouse, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+            </td>
+            <td>
+                @Html.LabelFor(model => model.Colour, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Colour, new { htmlAttributes = new { @class = "uk-input" } })
+                @Html.ValidationMessageFor(model => model.Colour, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+    </table>
+}
+
+<div>
+    @Html.ActionLink("Back to Item List", "Edit", new { id = Model.OrderId })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -11,7 +11,13 @@ namespace BLL_Layer.BLL.Interface
     public interface IPurchaseOrderRepository 
     {
         void Add(OrderDTO order);
-        void Edit(int Id, OrderDTO newOrder);
-        OrderDTO Find(int Id);
+        void Edit(OrderDTO newOrder);
+        OrderDTO Find(int id);
+
+        void AddItem(OrderDetailDTO orderDetail);
+        void EditItem(OrderDetailDTO newOrderDetail);
+        OrderDetailDTO FindOrderDetail(int id);
+
+        bool UniquePONum(int PONumber, int id);
     }
 }

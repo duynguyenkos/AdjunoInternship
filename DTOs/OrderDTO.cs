@@ -11,9 +11,11 @@ namespace DTOs
 {
     public class OrderDTO
     {
+        public int Id { get; set; }
+
         [Display(Name = "PO Number")]
         [Range(0, 9999999999)] //up to 10 digits
-        public int Id { get; set; }
+        public int PONumber { get; set; }
 
         //DropList from 2010 to 2020
         //Default value is Current Date

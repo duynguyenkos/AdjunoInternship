@@ -1,0 +1,14 @@
+.PO {
+  border: 1px solid black;
+  color: black;
+}
+
+.PODetail tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.PODetail th {
+  color: white;
+  font-weight: bold;
+  background-color: #204060;
+  text-transform: capitalize;
+}
