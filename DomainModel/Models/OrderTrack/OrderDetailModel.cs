@@ -29,6 +29,8 @@ namespace DomainModel.Models
         //unknown
         public string Item { get; set; }
 
+        public float ReviseQuantity { get; set; }
+
         [Required]
         //[Display(Name = "Item Quantity")]
         public float Quantity { get; set; }

@@ -31,6 +31,8 @@ namespace DomainModel.Models
         //[ForeignKey("OrderModel")]
         public int OrderId { get; set; }
 
+        public string PONumber { get; set; }
+
         public virtual OrderModel OrderModel { get; set; }
     }
 }

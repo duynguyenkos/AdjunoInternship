@@ -28,44 +28,26 @@ namespace BLL_Layer.BLL.Implements
         {
             ProgressCheckModel progressCheckModel = new ProgressCheckModel()
             {
+               
                 Id = progressCheckDTO.Id,
-                Complete = progressCheckDTO.Complete,
+                PONumber=progressCheckDTO.PONumber,
+                Complete=false,
                 OnSchedule = progressCheckDTO.OnSchedule,
                 IntendedShipDate = progressCheckDTO.IntendedShipDate,
-                EstQtyToShip = progressCheckDTO.POCheckQuantity,
                 InspectionDate = progressCheckDTO.InspectionDate,
                 OrderId = progressCheckDTO.OrderId
+                
 
             };
+            if (progressCheckDTO.POCheckQuantity == progressCheckDTO.POQuantity)
+            {
+                progressCheckModel.Complete = true;
+            }
+            
             db.GetDB().ProgressChecks.AddOrUpdate(progressCheckModel);
             db.GetDB().SaveChanges();
 
         }
-
-        public ProgressCheckDTO Find(int id)
-        {
-            //ProgressCheckModel progressCheckModel = db.GetDB().ProgressChecks.Find(id);
-            //OrderModel order = db.GetDB().Orders.Find(progressCheckModel.OrderId);
-            ProgressCheckDTO progressCheckDTO = new ProgressCheckDTO();
-            //{
-            //    Id=progressCheckModel.Id,
-            //    Complete=progressCheckModel.Complete,
-            //    OnSchedule=progressCheckModel.OnSchedule,
-            //    IntendedShipDate=progressCheckModel.IntendedShipDate,
-            //    POCheckQuantity=progressCheckModel.EstQtyToShip,
-            //    InspectionDate=progressCheckModel.InspectionDate,
-            //    ShipDate=order.ShipDate,
-            //    PONumber=order.Id
-            //};
-
-            //progressCheckDTO.ListOrderDetail = db.GetDB().OrderDetails.Where(p => p.OrderId == progressCheckModel.OrderId).ToList();
-            //foreach (var i in progressCheckDTO.ListOrderDetail)
-            //{
-            //    progressCheckDTO.POQuantity += i.Quantity;
-            //}
-            return progressCheckDTO;
-        }
-
         public List<ProgressCheckDTO> GetAll()
         {
             List<ProgressCheckDTO> progressCheckDTOs = new List<ProgressCheckDTO>();
@@ -82,44 +64,30 @@ namespace BLL_Layer.BLL.Implements
                     POQuantity += j.Quantity;
                 }
                 ProgressCheckModel progressCheckModel = db.GetDB().ProgressChecks.SingleOrDefault(p => p.OrderId == i.Id);
-                if (progressCheckModel != null)
+                if (progressCheckModel == null)
                 {
-                    ProgressCheckDTO temp = new ProgressCheckDTO()
-                    {
-                        Id = i.Id,
-                        Factory = order.Factory,
-                        //PONumber = progressCheckModel.OrderId,
-                        POCheckQuantity = progressCheckModel.EstQtyToShip,
-                        ShipDate = order.ShipDate,
-                        InspectionDate = progressCheckModel.InspectionDate,
-                        IntendedShipDate = progressCheckModel.IntendedShipDate,
-                        Complete = progressCheckModel.Complete,
-                        POQuantity = POQuantity,
-                        Supplier = order.Supplier,
-                        ListOrderDetail = orderDetailModels
-
-                    };
-                    progressCheckDTOs.Add(temp);
+                    progressCheckModel.Complete = false;
+                    progressCheckModel.EstQtyToShip = 0;
+                    progressCheckModel.InspectionDate = DateTime.Now.Date;
+                    progressCheckModel.IntendedShipDate = DateTime.Now.Date;
                 }
-                else
+                ProgressCheckDTO temp = new ProgressCheckDTO()
                 {
-                    ProgressCheckDTO temp = new ProgressCheckDTO()
-                    {
-                        Id = i.Id,
-                        Factory = order.Factory,
-                        //PONumber = progressCheckModel.OrderId,
-                        //POCheckQuantity = progressCheckModel.EstQtyToShip,
-                        ShipDate = order.ShipDate,
-                        InspectionDate = DateTime.Now.Date,
-                        IntendedShipDate = DateTime.Now.Date,
-                        //Complete = progressCheckModel.Complete,
-                        POQuantity = POQuantity,
-                        Supplier = order.Supplier,
-                        ListOrderDetail = orderDetailModels
+                    Id = i.Id,
+                    Factory = order.Factory,
+                    PONumber = order.PONumber,
+                    POCheckQuantity = progressCheckModel.EstQtyToShip,
+                    ShipDate = order.ShipDate,
+                    InspectionDate = progressCheckModel.InspectionDate,
+                    IntendedShipDate = progressCheckModel.IntendedShipDate,
+                    Complete = progressCheckModel.Complete,
+                    POQuantity = POQuantity,
+                    Supplier = order.Supplier,
+                    ListOrderDetail = orderDetailModels
 
-                    };
+                };
                     progressCheckDTOs.Add(temp);
-                }
+                
                                
            }
             return progressCheckDTOs;

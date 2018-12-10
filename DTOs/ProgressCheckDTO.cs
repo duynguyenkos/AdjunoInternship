@@ -23,6 +23,7 @@ namespace DTOs
         [Display(Name = "Inspection Date")]
         public DateTime InspectionDate { get; set; }
         [Display(Name = "Int Ship Date")]
+        [IntShipDateLaterThanInspectionDate("InspectionDate")]
         public DateTime IntendedShipDate { get; set; }
         [Display(Name = "PO Quantity Complete ")]
         public bool Complete { get; set; }

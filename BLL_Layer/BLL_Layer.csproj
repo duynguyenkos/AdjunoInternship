@@ -84,9 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\Implements\ProgressCheckTool\ProgressCheckRepository.cs" />
-    <Compile Include="BLL\Implements\PurchaseOrderTool\PurchaseOrderRepository.cs" />
     <Compile Include="BLL\Interface\ProgressCheckTool\IProgressCheckRepository.cs" />
-    <Compile Include="BLL\Interface\PurchaseOrderTool\IPurchaseOrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +108,10 @@
       <Project>{98c5bc74-accd-4058-b4a6-06e1fa606608}</Project>
       <Name>DTOs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BLL\Implements\PurchaseOrderTool\" />
+    <Folder Include="BLL\Interface\PurchaseOrderTool\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

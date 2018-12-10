@@ -31,6 +31,8 @@ namespace InternProject.Controllers
             ViewBag.OriginPorts = getSearchItem.OriginPorts;
             ViewBag.Factories = getSearchItem.Factories;
             ViewBag.Depts = getSearchItem.Depts;
+            ViewBag.ErrorList = "No result match, please try again";
+
 
             List<ProgressCheckDTO> progressCheckDTOs = ProcheckRepository.GetAll();
             if(PONumberSearch!=null || ItemSearch != null)
@@ -41,7 +43,7 @@ namespace InternProject.Controllers
             {
                 progressCheckDTOs = progressCheckDTOs.Where(p => p.Supplier==Suppliers || p.Factory==Factories).ToList();
                 
-            }
+            }          
             return View(progressCheckDTOs.ToPagedList(pageNumber,pageSize));
         }
         [HttpPost]

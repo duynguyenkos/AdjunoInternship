@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="GetSearchItemDTO.cs" />
     <Compile Include="OrderDetailDTO.cs" />
+    <Compile Include="IntShipDateLaterThanInspectionDate.cs" />
     <Compile Include="PortIsDifferent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OrderDTO.cs" />

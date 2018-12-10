@@ -41,7 +41,6 @@ namespace InternProject
         public static void RegisterTypes(IUnityContainer container)
         {
             //container.RegisterInstance<IPurchaseOrderRepository> (new PurchaseOrderRepository());
-            container.RegisterType<IPurchaseOrderRepository, PurchaseOrderRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<IPODBContext, PODBContextRepository>(new ContainerControlledLifetimeManager());
             //container.RegisterInstance<IPODBContext>("POdb", new PODBContextRepository());
             container.RegisterType<IProgressCheckRepository, ProgressCheckRepository>(new ContainerControlledLifetimeManager());

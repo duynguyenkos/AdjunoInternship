@@ -6,7 +6,7 @@ namespace DomainModel.Models
 {
     public class OrderModel : Base
     {
-        public int PONumber { get; set; }
+        public string PONumber { get; set; }
 
         //DropList from 2010 to 2020
         //Default value is Current Date
