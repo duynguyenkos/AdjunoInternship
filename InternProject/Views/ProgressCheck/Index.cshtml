@@ -1,132 +1,121 @@
-﻿
+﻿@model PagedList.IPagedList<DTOs.ProgressCheckDTO>
+@using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexTest";
     Layout = "~/Views/Layout/Home.cshtml";
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<form>
+    <div class="uk-container">
+        <div class="uk-grid">
+            <div class="uk-width-1-3">
+                <table class="uk-table">
+                    <tbody>
+                        <tr>
+                            <td><label>Origin</label></td>
+                            <td>
+                                <div class="uk-form-select" data-uk-form-select>
+                                    @Html.DropDownList("Origins", new SelectList(ViewBag.Origins), new {@id= "Origins" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Origin Port</label></td>
+                            <td>
+                                <div class="uk-form-select" data-uk-form-select>
+                                    @Html.DropDownList("OriginPorts", new SelectList(ViewBag.OriginPorts),new {@id= "OriginPorts" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Factory</label></td>
+                            <td>
+                                <div class="uk-form-select" data-uk-form-select>
+                                    <span></span>
+                                    @Html.DropDownList("Factories", new SelectList(ViewBag.Factories),new { @id = "Factories" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Supplier</label></td>
+                            <td>
+                                <div class="uk-form-select" data-uk-form-select>
+                                    @Html.DropDownList("Suppliers", new SelectList(ViewBag.Suppliers), new { @id = "Suppliers" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Status</label></td>
+                            <td>
+                                <div class="uk-form-select" data-uk-form-select>
+                                    <span></span>
+                                    <select>
+                                        <option value="">...</option>
+                                        <option value="">...</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="uk-width-1-3">
+                <table class="uk-table">
+                    <tbody>
+                        <tr>
+                            <td><label>Dept</label></td>
+                            <td>
+                                <div class="uk-form-select" data-uk-form-select>
+                                    @Html.DropDownList("Depts", new SelectList(ViewBag.Depts), new {@id= "Depts" })
 
-<div class="uk-container">
-    <div class="uk-grid">
-        <div class="uk-width-1-3">
-            <table class="uk-table">
-                <tbody>
-                    <tr>
-                        <td><label>Origin</label></td>
-                        <td>
-                            <div class="uk-form-select" data-uk-form-select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>PO Number</label></td>
+                            <td>
+                                <input id="PONumberSearch"  />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label>Item</label></td>
+                            <td>
+                                <input id="ItemSearch" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                                <select>
-                                    <option value="">aaaaaaaaaaaaaaaaaaaaaa</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Origin Port</label></td>
-                        <td>
-                            <div class="uk-form-select" data-uk-form-select>
-                                <span></span>
-                                <select>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Factory</label></td>
-                        <td>
-                            <div class="uk-form-select" data-uk-form-select>
-                                <span></span>
-                                <select>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Supplier</label></td>
-                        <td>
-                            <div class="uk-form-select" data-uk-form-select>
-                                <span></span>
-                                <select>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Status</label></td>
-                        <td>
-                            <div class="uk-form-select" data-uk-form-select>
-                                <span></span>
-                                <select>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="uk-width-1-3">
-            <table class="uk-table">
-                <tbody>
-                    <tr>
-                        <td><label>Dept</label></td>
-                        <td>
-                            <div class="uk-form-select" data-uk-form-select>
-                                <span></span>
-                                <select>
-                                    <option value="">...</option>
-                                    <option value="">...</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>PO Number</label></td>
-                        <td>
-                            <input class="uk-input" type="text" placeholder="Input">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label>Item</label></td>
-                        <td>
-                            <input class="uk-input" type="text" placeholder="Input">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            </div>
+            <div class="uk-width-1-3">
+                <table class="uk-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input id="Search" style="height:50px;width:150px" class="uk-button uk-button-primary" type="submit" data-uk-button value="Search">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="Achieve" style="height:50px;width:150px" class="uk-button uk-button-danger" type="button" data-uk-button value="Achieve">
 
-        </div>
-        <div class="uk-width-1-3">
-            <table class="uk-table">
-                <tbody>
-                    <tr>
-                        <td>
-                            <button style="height:50px;width:150px" class="uk-button uk-button-primary" type="button" data-uk-button><span class="uk-margin-small-right" uk-icon="search"></span>Search</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button style="height:50px;width:150px" class="uk-button uk-button-danger" type="button" data-uk-button><span class="uk-margin-small-right" uk-icon="check"></span>Archive</button>
+                            </td>
+                        </tr>
 
-                        </td>
-                    </tr>
+                    </tbody>
+                </table>
 
-                </tbody>
-            </table>
-
+            </div>
         </div>
     </div>
-</div>
-<div class="uk-container">
-    <table class="uk-table" border="1" style="color:white">
-        <thead>
+</form>
+@for(int i=0; i<Model.Count();i++)
+{
+<div class="uk-container" style="margin-top:50px">
+    @Html.HiddenFor(model => model[i].OrderId, new { Value = Model[i].OrderId })
+    @Html.HiddenFor(model => model[i].Id, new { Value = Model[i].Id })
+    <table @*class="uk-table"*@ border="1">
+        <thead style="color:white">
             <tr style="background-color:#333">
                 <td>
                     Supplier
@@ -138,16 +127,15 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
+                <td>@Model[i].Supplier</td>
+                <td>@Model[i].Factory</td>
             </tr>
 
         </tbody>
     </table>
-    <table class="uk-table" border="1" style="color:white">
-        <thead>
+    <table @*class="uk-table"*@ border="1">
+        <thead style="color:white">
             <tr style="background-color:#333">
-                <td></td>
                 <td>
                     PO Number
                 </td>
@@ -173,24 +161,32 @@
         </thead>
         <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>PO Number (Missing)</td>
+                <td>@Model[i].POQuantity</td>
+                <td>@Model[i].POCheckQuantity</td>
+                <td>@Model[i].ShipDate</td>
                 <td>
-                    <input width="247" type="date">
+                    @Html.TextBoxFor(model => model[i].InspectionDate, DateTime.Now.ToString("yyyy-MM-dd"), new { type = "date", @class = "uk-input" })
+
+                    @*<input id="InspectionDate" width="247" type="date" value="@Model[i].InspectionDate.ToString("yyyy-MM-dd")">*@
                 </td>
                 <td>
-                    <input width="247" type="date">
+
+                    @Html.TextBoxFor(model => model[i].IntendedShipDate, DateTime.Now.ToString("yyyy-MM-dd"), new { type = "date", @class = "uk-input" })
+
+                    @*<input id="IntShipDate" width="247" type="date" value="@Model[i].IntendedShipDate.ToString("yyyy-MM-dd")">*@
                 </td>
-                <td></td>
+                <td>
+                    <select id="QuantityComplete">
+                        <option>@Model[i].Complete</option>
+                    </select>
+                </td>
             </tr>
 
         </tbody>
     </table>
-    <table class="uk-table" border="1" style="color:white">
-        <thead>
+    <table @*class="uk-table"*@ border="1">
+        <thead style="color:white">
             <tr style="background-color:#333">
                 <td></td>
                 <td>
@@ -205,15 +201,42 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input class="uk-checkbox" type="checkbox"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            @foreach (var j in Model[i].ListOrderDetail)
+            {
+                <tr>
+                    <td><input class="uk-checkbox" type="checkbox"></td>
+
+                    <td>Item Number (missing)</td>
+                    <td>@j.Quantity</td>
+                    <td>
+                        <input id="ReviseQuantity" width="247" type="text" value="">
+                    </td>
+                </tr>
+            }
 
         </tbody>
     </table>
 </div>
+}
+<br />
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $('#Search').click(function () {
+        $.ajax({
+            url: "@Url.Action("Index","ProgressCheck")",
+            data: {
+                Suppliers: $('#Suppliers').val(),
+                Factories: $('#Factories').val(),
+                Origins: $('#Origins').val(),
+                OriginPorts: $('#OriginPorts').val(),
+                Depts: $('#Depts').val(),
+                PONumberSearch: $('PONumberSearch').val(),
+                ItemSearch: $('ItemSearch').val()
+            },
+        });
+    });
+</script>
+
 
 

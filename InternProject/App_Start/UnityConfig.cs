@@ -44,7 +44,7 @@ namespace InternProject
             container.RegisterType<IPurchaseOrderRepository, PurchaseOrderRepository>(new ContainerControlledLifetimeManager());
             container.RegisterType<IPODBContext, PODBContextRepository>(new ContainerControlledLifetimeManager());
             //container.RegisterInstance<IPODBContext>("POdb", new PODBContextRepository());
-            container.RegisterType<IProgressCheckRepository, ProgressCheckRepository>();
+            container.RegisterType<IProgressCheckRepository, ProgressCheckRepository>(new ContainerControlledLifetimeManager());
 
             // NOTE: To load from web.config uncomment the line below.
             // Make sure to add a Unity.Configuration to the using statements.

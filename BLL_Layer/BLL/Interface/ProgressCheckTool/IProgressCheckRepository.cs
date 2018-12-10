@@ -6,8 +6,7 @@ namespace BLL_Layer.BLL.Interface
     {
         List<ProgressCheckDTO> GetAll();
         void Add(ProgressCheckDTO progressCheckDTO);
-        ProgressCheckDTO Find(int id);
-        void Delete(ProgressCheckDTO progressCheckDTO);
-        void Edit(ProgressCheckDTO progressCheckDTO);
+        ProgressCheckDTO Find(int id);       
+        GetSearchItemDTO SearchItem();
     }
 }

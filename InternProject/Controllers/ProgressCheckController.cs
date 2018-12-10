@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Data.Entity.Migrations;
 namespace InternProject.Controllers
 {
     public class ProgressCheckController : Controller
@@ -19,22 +20,38 @@ namespace InternProject.Controllers
             this.ProcheckRepository = progressCheckRepository;
         }
         // GET: ProgressCheck
-        public ActionResult Index()
+
+        public ActionResult Index(int? page,string PONumberSearch,string ItemSearch,string Suppliers,string Factories,string Origins,string OriginPorts,string Depts)
         {
-            return View();
-        }
-        public ActionResult IndexTest()
-        {
+            int pageSize = 2;
+            int pageNumber = (page ?? 1);
+            GetSearchItemDTO getSearchItem = ProcheckRepository.SearchItem();
+            ViewBag.Suppliers = getSearchItem.Suppliers;
+            ViewBag.Origins = getSearchItem.Origins;
+            ViewBag.OriginPorts = getSearchItem.OriginPorts;
+            ViewBag.Factories = getSearchItem.Factories;
+            ViewBag.Depts = getSearchItem.Depts;
+
             List<ProgressCheckDTO> progressCheckDTOs = ProcheckRepository.GetAll();
-            return View(progressCheckDTOs);
+            if(PONumberSearch!=null || ItemSearch != null)
+            {
+                progressCheckDTOs = progressCheckDTOs.Where(p => p.PONumber == PONumberSearch).ToList();                            
+            }
+            if(!String.IsNullOrEmpty(Suppliers)||!String.IsNullOrEmpty(Factories))
+            {
+                progressCheckDTOs = progressCheckDTOs.Where(p => p.Supplier==Suppliers || p.Factory==Factories).ToList();
+                
+            }
+            return View(progressCheckDTOs.ToPagedList(pageNumber,pageSize));
         }
         [HttpPost]
-        public ActionResult IndexTest([Bind(Include = "InspectionDate,IntendedShipDate,Complete")]ProgressCheckDTO progressCheckDTO)
+        public ActionResult Index(IEnumerable<ProgressCheckDTO> progressCheckDTOs)
         {
-            ProcheckRepository.Add(progressCheckDTO);
-
-            return View(progressCheckDTO);
+            for (int i = 1; i <= progressCheckDTOs.Count(); i++)
+            {
+                ProcheckRepository.Add(progressCheckDTOs.ElementAt(i));
+            }
+            return View("Index");
         }
-        
     }
 }

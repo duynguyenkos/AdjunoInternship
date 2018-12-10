@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+select {
+    width: 100%;
+}
+
 tr {
     height: 30px
 }

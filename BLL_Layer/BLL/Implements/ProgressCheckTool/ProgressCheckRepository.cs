@@ -2,8 +2,10 @@
 using DatabaseRepo;
 using DomainModel.Models;
 using DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity.Migrations;
 
 namespace BLL_Layer.BLL.Implements
 {
@@ -35,19 +37,9 @@ namespace BLL_Layer.BLL.Implements
                 OrderId = progressCheckDTO.OrderId
 
             };
-            db.GetDB().ProgressChecks.Add(progressCheckModel);
+            db.GetDB().ProgressChecks.AddOrUpdate(progressCheckModel);
             db.GetDB().SaveChanges();
 
-        }
-
-        public void Delete(ProgressCheckDTO progressCheckDTO)
-        {
-            
-        }
-
-        public void Edit(ProgressCheckDTO progressCheckDTO)
-        {
-           
         }
 
         public ProgressCheckDTO Find(int id)
@@ -80,35 +72,75 @@ namespace BLL_Layer.BLL.Implements
             List<ProgressCheckModel> progressCheckModels = db.GetDB().ProgressChecks.ToList();
             List<OrderModel> orders = db.GetDB().Orders.ToList();
             
-            foreach (var i in progressCheckModels)
+            foreach (var i in orders)
             {
-                OrderModel order = db.GetDB().Orders.Find(i.OrderId);
+                OrderModel order = db.GetDB().Orders.Find(i.Id);
                 float POQuantity = 0;
-                List<OrderDetailModel> orderDetailModels = db.GetDB().OrderDetails.Where(p => p.OrderId == i.OrderId).ToList();
+                List<OrderDetailModel> orderDetailModels = db.GetDB().OrderDetails.Where(p => p.OrderId == i.Id).ToList();
                 foreach(var j in orderDetailModels)
                 {
                     POQuantity += j.Quantity;
                 }
-                ProgressCheckDTO temp = new ProgressCheckDTO()
+                ProgressCheckModel progressCheckModel = db.GetDB().ProgressChecks.SingleOrDefault(p => p.OrderId == i.Id);
+                if (progressCheckModel != null)
                 {
-                    Id=i.Id,
-                    Factory=order.Factory,
-                    PONumber=i.OrderId,
-                    POCheckQuantity=i.EstQtyToShip,
-                    ShipDate=order.ShipDate,
-                    InspectionDate=i.InspectionDate,
-                    IntendedShipDate=i.IntendedShipDate,
-                    Complete=i.Complete,
-                    POQuantity=POQuantity,
-                    Supplier=order.Supplier,
-                    ListOrderDetail=orderDetailModels
+                    ProgressCheckDTO temp = new ProgressCheckDTO()
+                    {
+                        Id = i.Id,
+                        Factory = order.Factory,
+                        //PONumber = progressCheckModel.OrderId,
+                        POCheckQuantity = progressCheckModel.EstQtyToShip,
+                        ShipDate = order.ShipDate,
+                        InspectionDate = progressCheckModel.InspectionDate,
+                        IntendedShipDate = progressCheckModel.IntendedShipDate,
+                        Complete = progressCheckModel.Complete,
+                        POQuantity = POQuantity,
+                        Supplier = order.Supplier,
+                        ListOrderDetail = orderDetailModels
 
-                };              
-                progressCheckDTOs.Add(temp);               
+                    };
+                    progressCheckDTOs.Add(temp);
+                }
+                else
+                {
+                    ProgressCheckDTO temp = new ProgressCheckDTO()
+                    {
+                        Id = i.Id,
+                        Factory = order.Factory,
+                        //PONumber = progressCheckModel.OrderId,
+                        //POCheckQuantity = progressCheckModel.EstQtyToShip,
+                        ShipDate = order.ShipDate,
+                        InspectionDate = DateTime.Now.Date,
+                        IntendedShipDate = DateTime.Now.Date,
+                        //Complete = progressCheckModel.Complete,
+                        POQuantity = POQuantity,
+                        Supplier = order.Supplier,
+                        ListOrderDetail = orderDetailModels
+
+                    };
+                    progressCheckDTOs.Add(temp);
+                }
+                               
            }
             return progressCheckDTOs;
-            
-
         }
+        public GetSearchItemDTO SearchItem()
+        {
+            List<OrderModel> orderModels = db.GetDB().Orders.ToList();
+            var suppliers = orderModels.Select(x => x.Supplier).Distinct();
+            var origins = orderModels.Select(x => x.Origin).Distinct();
+            var originports = orderModels.Select(x => x.PortOfLoading).Distinct();
+            var factories = orderModels.Select(x => x.Factory).Distinct();
+            var depts = orderModels.Select(x => x.Department).Distinct();
+            GetSearchItemDTO getSearchItemDTO = new GetSearchItemDTO()
+            {
+                Suppliers = suppliers,
+                Origins = origins,
+                OriginPorts=originports,
+                Factories=factories,
+                Depts=depts
+            };        
+            return getSearchItemDTO;
+        }    
     }
 }

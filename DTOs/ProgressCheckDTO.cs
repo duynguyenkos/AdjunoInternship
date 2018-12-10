@@ -12,7 +12,7 @@ namespace DTOs
     {
         public int Id { get; set; }
         [Display(Name = "PO Number")]
-        public int PONumber { get; set; }
+        public string PONumber { get; set; }
         [Display(Name = "PO Quantity")]
         public float POQuantity { get; set; }
         [Display(Name = "PO Check Quantity")]
